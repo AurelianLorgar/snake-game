@@ -1,13 +1,12 @@
 import javax.swing.*;
 
-class GameWindow extends JFrame {
-
-    GameWindow() {
-        setTitle("Змейка");
+public class TypeWindow extends JFrame {
+    TypeWindow() {
+        setTitle("Сложность");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setSize(340, 360);
+        setSize(240, 130);
         setLocation(550, 284);
-        add(new GameField());
+        add(new TypeField());
         setVisible(true);
         setResizable(false);
     }

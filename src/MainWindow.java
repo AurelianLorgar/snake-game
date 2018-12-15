@@ -2,12 +2,11 @@ import javax.swing.*;
 
 public class MainWindow extends JFrame {
 
-    public MainWindow() {
-
+    private MainWindow() {
         setTitle("Змейка");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(340, 360);
-        setLocation(400, 400);
+        setLocation(550, 284);
         add(new MenuField());
         setVisible(true);
         setResizable(false);

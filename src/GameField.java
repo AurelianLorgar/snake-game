@@ -4,9 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 import java.util.Random;
 
-public class GameField extends JPanel implements ActionListener {
+public class GameField extends JPanel implements ActionListener, Serializable {
 
     private final int SIZE = 320;
     private final int SNEK_SIZE = 16;
@@ -20,14 +21,16 @@ public class GameField extends JPanel implements ActionListener {
     private int[] snekX = new int[ALL_SNEKS];
     private int[] snekY = new int[ALL_SNEKS];
     private int sneks;
+    private int gameType;
+    private int gameSpeed;
     private boolean left = false;
     private boolean right = true;
     private boolean up = false;
     private boolean down = false;
     private boolean inGame = true;
+    private boolean isPause;
     private int count = 0;
     private int difficulty = 4; //убрать присваивание значения при добавлении меню
-    private int gameType = new MenuField().getChooseType();
 
     GameField() {
         setBackground(Color.blue);
@@ -39,11 +42,16 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     private void setTimer() {
-        timer = new Timer(SPEED / difficulty, this);
+        timer = new Timer(SPEED / gameSpeed, this);
         timer.start();
     }
 
     private void initGame() {
+        gameType = new TypeField(gameType).getGameType();
+        gameSpeed = new SpeedField(gameSpeed).getGameSpeed();
+        isPause = false;
+
+        System.out.println(gameType); //чисто для проверки
         sneks = 3;
         count = 0;
         for (int i = 0; i < sneks; i++) {
@@ -137,7 +145,7 @@ public class GameField extends JPanel implements ActionListener {
             if (snekY[0] < 0) {
                 inGame = false;
             }
-        } else if ((gameType == 1)){
+        } else if (gameType == 1) {
             if (snekX[0] > SIZE) {
                 snekX[0] = 0;
             }
@@ -193,6 +201,14 @@ public class GameField extends JPanel implements ActionListener {
                 left = false;
             }
 
+            if ((inGame) && (key == KeyEvent.VK_SPACE) && (!isPause)) {
+                timer.stop();
+                isPause = true;
+            } else {
+                timer.start();
+                isPause = false;
+            }
+
             if ((!inGame) && (key == KeyEvent.VK_SPACE)) {
                 inGame = true;
                 right = true;
@@ -204,3 +220,4 @@ public class GameField extends JPanel implements ActionListener {
         }
     }
 }
+

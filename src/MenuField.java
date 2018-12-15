@@ -7,53 +7,41 @@ class MenuField extends JPanel {
 
     private JButton newGame = new JButton("Новая игра");
     private JButton scores = new JButton("Доска почёта");
-    private JButton difficulty = new JButton("Сложность");
+    private JButton speed = new JButton("Сложность");
+    private JButton type = new JButton("Режим");
     private JButton save = new JButton("Сохранить");
     private JButton load = new JButton("Загрузить");
     private JButton exit = new JButton("Выход");
-    private JPanel typePanel = new JPanel(new GridLayout(0, 1));
-
-    private int chooseType;
-    int getChooseType() {
-        return chooseType;
-    }
+    private JPanel typePanel = new JPanel(new GridLayout(0, 2));
 
     MenuField() {
         initialization();
-        radioButtons();
         listeners();
     }
 
     private void initialization()
     {
+        add(typePanel, BorderLayout.LINE_START);
         setLayout(new GridLayout(7, 1, 10, 10));
         add(newGame);
         add(scores);
-        add(difficulty);
-        add(typePanel, BorderLayout.LINE_START);
+        add(speed);
+        add(type);
         add(save);
         add(load);
         add(exit);
-
     }
 
-    private void radioButtons() {
-        JRadioButton standardButton = new JRadioButton("Стандартный режим");
-        typePanel.add(standardButton);
-        JRadioButton infiniteButton = new JRadioButton("Бесконечное поле");
-        typePanel.add(infiniteButton);
 
-        if (standardButton.isSelected()) {
-            chooseType = 0;
-            infiniteButton.setSelected(false);
-        } else if (infiniteButton.isSelected()) {
-            chooseType = 1;
-            standardButton.setSelected(false);
-        }
+    private void speedButtons() {
+        new SpeedWindow().setVisible(true);
+    }
+
+    private void typeButtons() {
+        new TypeWindow().setVisible(true);
     }
 
     private void listeners() {
-        //Начало игры
         ActionListener startGameListener = e -> new GameWindow();
         newGame.addActionListener(startGameListener);
 
@@ -63,19 +51,13 @@ class MenuField extends JPanel {
         };
         scores.addActionListener(scoresListener);
 
-
         //Скорость
-        ActionListener difficultyListener = e -> {
+        ActionListener speedListener = e -> speedButtons();
+        speed.addActionListener(speedListener);
 
-        };
-        difficulty.addActionListener(difficultyListener);
-
-
-        //Режим игры
-        /*ActionListener typeListener = e -> {
-
-        };
-        type.addActionListener(typeListener);*/
+        //Режим
+        ActionListener typeListener = e -> typeButtons();
+        type.addActionListener(typeListener);
 
         //Сохранение
         ActionListener saveListener = e -> {
@@ -89,7 +71,6 @@ class MenuField extends JPanel {
 
         };
         load.addActionListener(loadListener);
-
 
         //Выход
         ActionListener exitListener = e -> System.exit(0);
