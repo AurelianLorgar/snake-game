@@ -18,6 +18,7 @@ public class TypeField extends JPanel {
 
     TypeField(int gameType) {
         this.gameType = gameType;
+        TypeField typeField = new TypeField(gameType);
     }
 
     int getGameType() {
@@ -27,8 +28,6 @@ public class TypeField extends JPanel {
     private void setGameType(int gameType) {
         this.gameType = gameType;
     }
-
-    private TypeField typeField = new TypeField(gameType);
 
     private void diffButtons() {
         typePanel.add(standardButton);
@@ -42,10 +41,11 @@ public class TypeField extends JPanel {
 
         ok.addActionListener(e -> {
             if (standardButton.isSelected()) {
-                typeField.setGameType(0);
+                setGameType(0);
             } else if (infiniteButton.isSelected()) {
-                typeField.setGameType(1);
+                setGameType(1);
             }
         });
+
     }
 }

@@ -21,8 +21,10 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     private int[] snekX = new int[ALL_SNEKS];
     private int[] snekY = new int[ALL_SNEKS];
     private int sneks;
-    private int gameType;
-    private int gameSpeed;
+    //private int gameType;
+    //private int gameSpeed;
+    private int speed;
+    private int type;
     private boolean left = false;
     private boolean right = true;
     private boolean up = false;
@@ -30,7 +32,8 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     private boolean inGame = true;
     private boolean isPause;
     private int count = 0;
-    private int difficulty = 4; //убрать присваивание значения при добавлении меню
+    private SpeedField gameSpeed;
+    private TypeField gameType;
 
     GameField() {
         setBackground(Color.blue);
@@ -42,16 +45,18 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     }
 
     private void setTimer() {
-        timer = new Timer(SPEED / gameSpeed, this);
+        System.out.println("Timer" + speed);
+        timer = new Timer(SPEED / speed, this);
         timer.start();
     }
 
     private void initGame() {
-        gameType = new TypeField(gameType).getGameType();
-        gameSpeed = new SpeedField(gameSpeed).getGameSpeed();
+        speed = gameSpeed.getGameSpeed();
+       // gameType = new TypeField(gameType).getGameType();
+       // gameSpeed = new SpeedField(gameSpeed).getGameSpeed();
         isPause = false;
 
-        System.out.println(gameType); //чисто для проверки
+        //System.out.println(gameType); //чисто для проверки
         sneks = 3;
         count = 0;
         for (int i = 0; i < sneks; i++) {
@@ -127,12 +132,13 @@ public class GameField extends JPanel implements ActionListener, Serializable {
 
     // FIXME: 15.12.2018 не работает бесконечный режим
     private void checkCollisions() {
+        type = gameType.getGameType();
         for (int i = sneks; i > 0; i--) {
             if (snekX[0] == snekX[i] && snekY[0] == snekY[i]) {
                 inGame = false;
             }
         }
-        if (gameType == 0) {
+        if (type == 0) {
             if (snekX[0] > SIZE) {
                 inGame = false;
             }
@@ -145,7 +151,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
             if (snekY[0] < 0) {
                 inGame = false;
             }
-        } else if (gameType == 1) {
+        } else if (type == 1) {
             if (snekX[0] > SIZE) {
                 snekX[0] = 0;
             }

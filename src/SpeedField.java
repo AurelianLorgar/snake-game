@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 class SpeedField extends JPanel {
 
@@ -17,8 +18,9 @@ class SpeedField extends JPanel {
         speedButtons();
     }
 
-    SpeedField(int gameSpeed) {
+    private SpeedField(int gameSpeed) {
         this.gameSpeed = gameSpeed;
+        SpeedField speedField = new SpeedField(gameSpeed);
     }
 
     int getGameSpeed() {
@@ -28,8 +30,6 @@ class SpeedField extends JPanel {
     private void setGameSpeed(int gameSpeed){
         this.gameSpeed = gameSpeed;
     }
-
-    private SpeedField speedField = new SpeedField(gameSpeed);
 
     private void speedButtons() {
         typePanel.add(slowButton);
@@ -45,12 +45,15 @@ class SpeedField extends JPanel {
 
         ok.addActionListener(e -> {
             if (slowButton.isSelected()) {
-                speedField.setGameSpeed(4);
+                setGameSpeed(4);
             } else if (normalButton.isSelected()) {
-                speedField.setGameSpeed(8);
+                setGameSpeed(8);
             } else if (difficultButton.isSelected()) {
-                speedField.setGameSpeed(12);
+                setGameSpeed(12);
             }
-        });
+       });
+
+        ActionListener exitListener = e -> System.out.println(gameSpeed);
+        ok.addActionListener(exitListener);
     }
 }
