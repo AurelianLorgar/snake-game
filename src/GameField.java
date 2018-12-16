@@ -49,6 +49,23 @@ public class GameField extends JPanel implements ActionListener, Serializable {
         this.count = count;
     }
 
+    void gameField(int mouseX, int mouseY, int sneks, int[] snekX, int[] snekY, int speed, int type, int count,
+                   boolean up, boolean down, boolean right, boolean left, boolean isPause) {
+        this.mouseX = mouseX;
+        this.mouseY = mouseY;
+        this.sneks = sneks;
+        this.snekX = snekX;
+        this.snekY = snekY;
+        this.speed = speed;
+        this.type = type;
+        this.count = count;
+        this.up = up;
+        this.down = down;
+        this.right = right;
+        this.left = left;
+        this.isPause = isPause;
+    }
+
     private void countSerialization() {
         int oldCount = 0;
 
