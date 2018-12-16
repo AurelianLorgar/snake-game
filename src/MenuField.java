@@ -5,8 +5,9 @@ import java.awt.event.*;
 
 class MenuField extends JPanel {
 
+    private static final long serialVersionUID = 2931112021148620900L;
     private JButton newGame = new JButton("Новая игра");
-    private JButton scores = new JButton("Доска почёта");
+    private JButton scores = new JButton("Таблица рекордов");
     private JButton speed = new JButton("Сложность");
     private JButton type = new JButton("Режим");
     private JButton save = new JButton("Сохранить");
@@ -32,7 +33,6 @@ class MenuField extends JPanel {
         add(exit);
     }
 
-
     private void speedButtons() {
         new SpeedWindow().setVisible(true);
     }
@@ -41,14 +41,24 @@ class MenuField extends JPanel {
         new TypeWindow().setVisible(true);
     }
 
+    private void recordButton() {
+        new HighScoreWindow().setVisible(true);
+    }
+
+    private void saveButton() {
+        new SaveButton();
+    }
+
+    private void loadButton() {
+        new LoadButton();
+    }
+
     private void listeners() {
         ActionListener startGameListener = e -> new GameWindow();
         newGame.addActionListener(startGameListener);
 
         //Таблица рекордов
-        ActionListener scoresListener = e -> {
-
-        };
+        ActionListener scoresListener = e -> recordButton();
         scores.addActionListener(scoresListener);
 
         //Скорость
@@ -60,16 +70,12 @@ class MenuField extends JPanel {
         type.addActionListener(typeListener);
 
         //Сохранение
-        ActionListener saveListener = e -> {
-
-        };
+        ActionListener saveListener = e -> saveButton();
         save.addActionListener(saveListener);
 
 
         //Загрузка
-        ActionListener loadListener = e -> {
-
-        };
+        ActionListener loadListener = e -> loadButton();
         load.addActionListener(loadListener);
 
         //Выход

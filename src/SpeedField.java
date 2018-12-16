@@ -8,7 +8,7 @@ class SpeedField extends JPanel {
     private JPanel typePanel = new JPanel(new GridLayout(0, 1));
     private JRadioButton slowButton = new JRadioButton("Легко");
     private JRadioButton normalButton = new JRadioButton("Нормально");
-    private JRadioButton difficultButton = new JRadioButton("Сложно");
+    private JRadioButton fastButton = new JRadioButton("Сложно");
 
     private int gameSpeed;
 
@@ -34,21 +34,21 @@ class SpeedField extends JPanel {
     private void speedButtons() {
         typePanel.add(slowButton);
         typePanel.add(normalButton);
-        typePanel.add(difficultButton);
+        typePanel.add(fastButton);
 
         normalButton.setSelected(true);
 
         ButtonGroup speedGroup = new ButtonGroup();
         speedGroup.add(slowButton);
         speedGroup.add(normalButton);
-        speedGroup.add(difficultButton);
+        speedGroup.add(fastButton);
 
         ok.addActionListener(e -> {
             if (slowButton.isSelected()) {
                 setGameSpeed(4);
             } else if (normalButton.isSelected()) {
                 setGameSpeed(8);
-            } else if (difficultButton.isSelected()) {
+            } else if (fastButton.isSelected()) {
                 setGameSpeed(12);
             }
        });
