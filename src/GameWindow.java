@@ -2,13 +2,16 @@ import javax.swing.*;
 
 class GameWindow extends JFrame {
 
-    GameWindow() {
+    GameField field;
+
+    GameWindow(int speed) {
         setTitle("Змейка");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(340, 360);
         setLocation(550, 284);
-        add(new GameField());
+        add(field = new GameField());
         setVisible(true);
         setResizable(false);
+        field.setSpeed(speed);
     }
 }

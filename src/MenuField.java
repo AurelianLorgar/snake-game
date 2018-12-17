@@ -14,6 +14,7 @@ class MenuField extends JPanel {
     private JButton load = new JButton("Загрузить");
     private JButton exit = new JButton("Выход");
     private JPanel typePanel = new JPanel(new GridLayout(0, 2));
+    private GameWindow game;
 
     MenuField() {
         initialization();
@@ -33,8 +34,16 @@ class MenuField extends JPanel {
         add(exit);
     }
 
+    private void gameWindow() {
+        game = new GameWindow(8);
+    }
+
     private void speedButtons() {
-        new SpeedWindow().setVisible(true);
+        SpeedWindow speedWindow;
+        speedWindow = new SpeedWindow();
+        speedWindow.setVisible(true);
+        int speed = speedWindow.speedField.getGameSpeed();
+        game.field.setSpeed(speed);
     }
 
     private void typeButtons() {
@@ -46,15 +55,16 @@ class MenuField extends JPanel {
     }
 
     private void saveButton() {
-        new SaveButton();
+        game.field.saveSerialization();
     }
 
     private void loadButton() {
-        new LoadButton();
+        game = new GameWindow(100);
+        game.field.loadSerialization();
     }
 
     private void listeners() {
-        ActionListener startGameListener = e -> new GameWindow();
+        ActionListener startGameListener = e -> gameWindow();
         newGame.addActionListener(startGameListener);
 
         //Таблица рекордов
@@ -72,7 +82,6 @@ class MenuField extends JPanel {
         //Сохранение
         ActionListener saveListener = e -> saveButton();
         save.addActionListener(saveListener);
-
 
         //Загрузка
         ActionListener loadListener = e -> loadButton();

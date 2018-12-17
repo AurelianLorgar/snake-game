@@ -18,16 +18,11 @@ class SpeedField extends JPanel {
         speedButtons();
     }
 
-    private SpeedField(int gameSpeed) {
-        this.gameSpeed = gameSpeed;
-        SpeedField speedField = new SpeedField(gameSpeed);
-    }
-
     int getGameSpeed() {
         return gameSpeed;
     }
 
-    private void setGameSpeed(int gameSpeed){
+    void setGameSpeed(int gameSpeed){
         this.gameSpeed = gameSpeed;
     }
 

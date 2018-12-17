@@ -16,10 +16,10 @@ public class TypeField extends JPanel {
         diffButtons();
     }
 
-    TypeField(int gameType) {
+    /*TypeField(int gameType) {
         this.gameType = gameType;
         TypeField typeField = new TypeField(gameType);
-    }
+    }*/
 
     int getGameType() {
         return gameType;

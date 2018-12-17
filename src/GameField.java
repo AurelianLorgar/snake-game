@@ -10,6 +10,8 @@ import java.util.Random;
 public class GameField extends JPanel implements ActionListener, Serializable {
 
     private static final long serialVersionUID = 2931112021148620900L;
+    private TypeWindow typeWindow;
+    private SpeedWindow speedWindow;
     private final transient int SIZE = 320;
     private final transient int SNEK_SIZE = 16;
     private final transient int ALL_SNEKS = 320;
@@ -22,10 +24,10 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     int[] snekX = new int[ALL_SNEKS];
     int[] snekY = new int[ALL_SNEKS];
     int sneks;
-    //private int gameType;
-    //private int gameSpeed;
-    int speed = 4;
-    int type = 0;
+    //private int gameType; //= typeWindow.typeField.getGameType();
+    //private int gameSpeed; //= speedWindow.speedField.getGameSpeed();
+    int speed;
+    int type;
     boolean left = false;
     boolean right = true;
     boolean up = false;
@@ -33,12 +35,48 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     private transient boolean inGame = true;
     boolean isPause;
     int count = 0;
-    private SpeedField gameSpeed;
-    private TypeField gameType;
+
+    public void setSpeed(int s) {
+        speed = s;
+        setTimer();
+    }
+
+    void saveSerialization() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("save\\save.dat"))) {
+            gameField(mouseX, mouseY, sneks, snekX, snekY, speed, type, count, up, down, right, left, isPause);
+            oos.writeObject(this);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    void loadSerialization() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("save\\save.dat"))) {
+            GameField gameField = (GameField) ois.readObject();
+            mouseX = gameField.mouseX;
+            mouseY = gameField.mouseY;
+            sneks = gameField.sneks;
+            snekX = gameField.snekX;
+            snekY = gameField.snekY;
+            speed = gameField.speed;
+            type = gameField.type;
+            count = gameField.count;
+            up = gameField.up;
+            down = gameField.down;
+            right = gameField.right;
+            left = gameField.left;
+            isPause = gameField.isPause;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     GameField() {
         setBackground(Color.blue);
         loadImages();
+        //setSpeed();
+        timer = new Timer(SPEED / speed, this);
+        timer.start();
         setTimer();
         initGame();
         addKeyListener(new FieldKeyListener());
@@ -49,8 +87,8 @@ public class GameField extends JPanel implements ActionListener, Serializable {
         this.count = count;
     }
 
-    void gameField(int mouseX, int mouseY, int sneks, int[] snekX, int[] snekY, int speed, int type, int count,
-                   boolean up, boolean down, boolean right, boolean left, boolean isPause) {
+    private void gameField(int mouseX, int mouseY, int sneks, int[] snekX, int[] snekY, int speed, int type, int count,
+                           boolean up, boolean down, boolean right, boolean left, boolean isPause) {
         this.mouseX = mouseX;
         this.mouseY = mouseY;
         this.sneks = sneks;
@@ -69,8 +107,8 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     private void countSerialization() {
         int oldCount = 0;
 
-        if (/*gameType.getGameType() == 0*/ type == 0) {
-            if (/*gameSpeed.getGameSpeed() == 4*/ speed == 4) {
+        if (type == 0) {
+            if (speed == 4) {
 
                 try (ObjectInputStream ois = new ObjectInputStream(
                         new FileInputStream("counts\\standard\\count_standard_slow.dat"))) {
@@ -90,7 +128,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
                     }
                 }
 
-            } else if (/*gameSpeed.getGameSpeed() == 8*/ speed == 8) {
+            } else if (speed == 8) {
 
                 try (ObjectInputStream ois = new ObjectInputStream(
                         new FileInputStream("counts\\standard\\count_standard_slow.dat"))) {
@@ -109,7 +147,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
                         e.printStackTrace();
                     }
                 }
-            } else if (/*gameSpeed.getGameSpeed() == 12*/ speed == 12) {
+            } else if (speed == 12) {
 
                 try (ObjectInputStream ois = new ObjectInputStream(
                         new FileInputStream("counts\\standard\\count_standard_slow.dat"))) {
@@ -129,8 +167,8 @@ public class GameField extends JPanel implements ActionListener, Serializable {
                     }
                 }
             }
-        } else if (/*gameType.getGameType() == 1*/ type == 1) {
-            if (/*gameSpeed.getGameSpeed() == 4*/ speed == 4) {
+        } else if (type == 1) {
+            if (speed == 4) {
 
                 try (ObjectOutputStream oos = new ObjectOutputStream(
                         new FileOutputStream("counts\\standard\\count_standard_diff.dat"))) {
@@ -149,7 +187,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
                         e.printStackTrace();
                     }
                 }
-            } else if (/*gameSpeed.getGameSpeed() == 8*/ speed == 8) {
+            } else if (speed == 8) {
 
                 try (ObjectOutputStream oos = new ObjectOutputStream(
                         new FileOutputStream("counts\\infinite\\count_infinite_slow.dat"))) {
@@ -168,7 +206,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
                         e.printStackTrace();
                     }
                 }
-            } else if (/*gameSpeed.getGameSpeed() == 12*/ speed == 12) {
+            } else if (speed == 12) {
 
                 try (ObjectOutputStream oos = new ObjectOutputStream(
                         new FileOutputStream("counts\\infinite\\count_infinite_normal.dat"))) {
@@ -191,16 +229,12 @@ public class GameField extends JPanel implements ActionListener, Serializable {
         }
     }
 
-    private void setTimer() {
-        System.out.println("Timer" + speed);
-        timer = new Timer(SPEED / speed, this);
-        timer.start();
+    public void setTimer() {
+        timer.setDelay(SPEED / speed);
+        System.out.println("Timer" + speed); //для проверки
     }
 
     private void initGame() {
-        //speed = gameSpeed.getGameSpeed();
-        // gameType = new TypeField(gameType).getGameType();
-        // gameSpeed = new SpeedField(gameSpeed).getGameSpeed();
         isPause = false;
 
         //System.out.println(gameType); //чисто для проверки
@@ -278,7 +312,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     }
 
     private void checkCollisions() {
-        //type = gameType.getGameType();
+        type = 1;
         for (int i = sneks; i > 0; i--) {
             if (snekX[0] == snekX[i] && snekY[0] == snekY[i]) {
                 inGame = false;
