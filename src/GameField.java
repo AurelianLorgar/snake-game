@@ -36,9 +36,13 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     boolean isPause;
     int count = 0;
 
-    public void setSpeed(int s) {
+    void setSpeed(int s) {
         speed = s;
         setTimer();
+    }
+
+    void setType(int t) {
+        type = t;
     }
 
     void saveSerialization() {
@@ -74,7 +78,8 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     GameField() {
         setBackground(Color.blue);
         loadImages();
-        //setSpeed();
+        setSpeed(speed);
+        setType(type);
         timer = new Timer(SPEED / speed, this);
         timer.start();
         setTimer();
@@ -312,7 +317,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     }
 
     private void checkCollisions() {
-        type = 1;
+        type = 1; // для работы программы, поскольку присвоить значение как планировалось, не выходит
         for (int i = sneks; i > 0; i--) {
             if (snekX[0] == snekX[i] && snekY[0] == snekY[i]) {
                 inGame = false;

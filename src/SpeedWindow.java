@@ -12,7 +12,6 @@ public class SpeedWindow extends JFrame {
         add(speedField = new SpeedField());
         setVisible(true);
         setResizable(false);
-        //speedField.setGameSpeed();
         speedField.getGameSpeed();
     }
 }

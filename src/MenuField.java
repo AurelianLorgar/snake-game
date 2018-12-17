@@ -39,15 +39,17 @@ class MenuField extends JPanel {
     }
 
     private void speedButtons() {
-        SpeedWindow speedWindow;
-        speedWindow = new SpeedWindow();
+        SpeedWindow speedWindow = new SpeedWindow();
         speedWindow.setVisible(true);
         int speed = speedWindow.speedField.getGameSpeed();
         game.field.setSpeed(speed);
     }
 
     private void typeButtons() {
-        new TypeWindow().setVisible(true);
+        TypeWindow typeWindow = new TypeWindow();
+        typeWindow.setVisible(true);
+        int type = typeWindow.typeField.getGameType();
+        game.field.setType(type);
     }
 
     private void recordButton() {

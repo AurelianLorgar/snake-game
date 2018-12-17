@@ -22,7 +22,7 @@ class SpeedField extends JPanel {
         return gameSpeed;
     }
 
-    void setGameSpeed(int gameSpeed){
+    private void setGameSpeed(int gameSpeed){
         this.gameSpeed = gameSpeed;
     }
 
