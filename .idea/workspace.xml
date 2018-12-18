@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7172778-7010-4fbb-87f1-44fe4d658263" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/counts/infinite/count_infinite_diff.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/counts/infinite/count_infinite_normal.dat" beforeDir="false" afterPath="$PROJECT_DIR$/counts/infinite/count_infinite_normal.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/counts/infinite/count_infinite_slow.dat" beforeDir="false" afterPath="$PROJECT_DIR$/counts/infinite/count_infinite_slow.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/counts/standard/count_standard_diff.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/counts/standard/count_standard_normal.dat" beforeDir="false" afterPath="$PROJECT_DIR$/counts/standard/count_standard_normal.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Snake/TypeField.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Snake/TypeField.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/save.dat" beforeDir="false" afterPath="$PROJECT_DIR$/save/save.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HighScoreField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HighScoreField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpeedField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpeedField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpeedWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpeedWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TypeField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TypeField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TypeWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TypeWindow.java" afterDir="false" />
-    </list>
+    <list default="true" id="d7172778-7010-4fbb-87f1-44fe4d658263" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,7 +15,7 @@
       <file leaf-file-name="GameField.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameField.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
+            <state relative-caret-position="289">
               <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -59,7 +42,7 @@
       <find>inGame</find>
       <find>inga</find>
       <find>count</find>
-      <find />
+      <find>int cou</find>
       <find>paintComponent</find>
       <find>mouseY</find>
       <find>countSerialization</find>
@@ -106,7 +89,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="775" />
@@ -712,7 +695,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="289">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />

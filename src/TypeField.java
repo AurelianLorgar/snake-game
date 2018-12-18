@@ -3,7 +3,7 @@ import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-public class TypeField extends JPanel {
+class TypeField extends JPanel {
 
     private JButton ok = new JButton("Ok");
     private JPanel typePanel = new JPanel(new GridLayout(0, 1));
