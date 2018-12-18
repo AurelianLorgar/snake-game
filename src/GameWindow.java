@@ -4,7 +4,7 @@ class GameWindow extends JFrame {
 
     GameField field;
 
-    GameWindow(int speed) {
+    GameWindow() {
         setTitle("Змейка");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(340, 360);
@@ -12,6 +12,5 @@ class GameWindow extends JFrame {
         add(field = new GameField());
         setVisible(true);
         setResizable(false);
-        field.setSpeed(speed);
     }
 }

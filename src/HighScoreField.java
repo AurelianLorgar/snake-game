@@ -29,48 +29,54 @@ class HighScoreField extends JPanel implements Serializable {
                 new FileInputStream("counts\\standard\\count_standard_slow.dat"))) {
             GameField gameField = (GameField)ois.readObject();
             standardSlow.setText("Стандартный режим, медленно: " + String.valueOf(gameField.count));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try(ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream("counts\\standard\\count_standard_normal.dat"))) {
             GameField gameField = (GameField)ois.readObject();
             standardNormal.setText("Стандартный режим, нормально: " + String.valueOf(gameField.count));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try(ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("counts\\standard\\count_standard_diff.dat"))) {
+                new FileInputStream("counts\\standard\\count_standard_fast.dat"))) {
             GameField gameField = (GameField)ois.readObject();
             standardFast.setText("Стандартный режим, быстро: " + String.valueOf(gameField.count));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try(ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream("counts\\infinite\\count_infinite_slow.dat"))) {
             GameField gameField = (GameField)ois.readObject();
             infiniteSlow.setText("Бесконечное поле, медленно: " + String.valueOf(gameField.count));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try(ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream("counts\\infinite\\count_infinite_normal.dat"))) {
             GameField gameField = (GameField)ois.readObject();
             infiniteNormal.setText("Бесконечное поле, нормально: " + String.valueOf(gameField.count));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         try(ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("counts\\infinite\\count_infinite_diff.dat"))) {
+                new FileInputStream("counts\\infinite\\count_infinite_fast.dat"))) {
             GameField gameField = (GameField)ois.readObject();
             infiniteFast.setText("Бесконечное поле, быстро: " + String.valueOf(gameField.count));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

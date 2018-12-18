@@ -2,7 +2,6 @@ import javax.swing.*;
 
 class TypeWindow extends JFrame {
 
-    TypeField typeField;
 
     TypeWindow() {
         setTitle("Сложность");
@@ -12,6 +11,5 @@ class TypeWindow extends JFrame {
         add(new TypeField());
         setVisible(true);
         setResizable(false);
-        typeField.getGameType();
     }
 }

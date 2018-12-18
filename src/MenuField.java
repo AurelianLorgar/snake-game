@@ -35,21 +35,15 @@ class MenuField extends JPanel {
     }
 
     private void gameWindow() {
-        game = new GameWindow(8);
+        game = new GameWindow();
     }
 
     private void speedButtons() {
-        SpeedWindow speedWindow = new SpeedWindow();
-        speedWindow.setVisible(true);
-        int speed = speedWindow.speedField.getGameSpeed();
-        game.field.setSpeed(speed);
+        new SpeedWindow().setVisible(true);
     }
 
     private void typeButtons() {
-        TypeWindow typeWindow = new TypeWindow();
-        typeWindow.setVisible(true);
-        int type = typeWindow.typeField.getGameType();
-        game.field.setType(type);
+        new TypeWindow().setVisible(true);
     }
 
     private void recordButton() {
@@ -61,7 +55,7 @@ class MenuField extends JPanel {
     }
 
     private void loadButton() {
-        game = new GameWindow(100);
+        game = new GameWindow();
         game.field.loadSerialization();
     }
 

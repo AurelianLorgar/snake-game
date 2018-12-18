@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 public class TypeField extends JPanel {
 
@@ -8,20 +10,12 @@ public class TypeField extends JPanel {
     private JRadioButton standardButton = new JRadioButton("Стандартный режим");
     private JRadioButton infiniteButton = new JRadioButton("Бесконечное поле");
 
-    private int gameType;
+    int gameType;
 
     TypeField() {
         add(typePanel, BorderLayout.LINE_START);
         add(ok);
         diffButtons();
-    }
-
-    int getGameType() {
-        return gameType;
-    }
-
-    private void setGameType(int gameType) {
-        this.gameType = gameType;
     }
 
     private void diffButtons() {
@@ -36,11 +30,22 @@ public class TypeField extends JPanel {
 
         ok.addActionListener(e -> {
             if (standardButton.isSelected()) {
-                setGameType(0);
+                gameType = 0;
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("settings\\type.dat"))) {
+                    oos.writeObject(this);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else if (infiniteButton.isSelected()) {
-                setGameType(1);
+                gameType = 1;
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("settings\\type.dat"))) {
+                    oos.writeObject(this);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
-
     }
 }

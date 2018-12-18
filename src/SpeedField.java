@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 class SpeedField extends JPanel {
 
@@ -10,20 +12,12 @@ class SpeedField extends JPanel {
     private JRadioButton normalButton = new JRadioButton("Нормально");
     private JRadioButton fastButton = new JRadioButton("Сложно");
 
-    private int gameSpeed;
+    int gameSpeed = 8;
 
     SpeedField() {
         add(typePanel, BorderLayout.LINE_START);
         add(ok);
         speedButtons();
-    }
-
-    int getGameSpeed() {
-        return gameSpeed;
-    }
-
-    private void setGameSpeed(int gameSpeed){
-        this.gameSpeed = gameSpeed;
     }
 
     private void speedButtons() {
@@ -40,15 +34,30 @@ class SpeedField extends JPanel {
 
         ok.addActionListener(e -> {
             if (slowButton.isSelected()) {
-                setGameSpeed(4);
+                gameSpeed = 4;
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("settings\\speed.dat"))) {
+                    oos.writeObject(this);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else if (normalButton.isSelected()) {
-                setGameSpeed(8);
+                gameSpeed = 8;
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("settings\\speed.dat"))) {
+                    oos.writeObject(this);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else if (fastButton.isSelected()) {
-                setGameSpeed(12);
+                gameSpeed = 12;
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("settings\\speed.dat"))) {
+                    oos.writeObject(this);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
        });
-
-        ActionListener exitListener = e -> System.out.println(gameSpeed);
-        ok.addActionListener(exitListener);
     }
 }
