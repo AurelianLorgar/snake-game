@@ -194,9 +194,8 @@ public class GameField extends JPanel implements ActionListener, Serializable {
             gameField(mouseX, mouseY, sneks, snekX, snekY, speed, type, count, up, down, right, left, isPause);
             oos.writeObject(this);
         } catch (Exception ex) {
-            /*JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
-                    JOptionPane.ERROR_MESSAGE);*/
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -219,7 +218,6 @@ public class GameField extends JPanel implements ActionListener, Serializable {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
-
         }
     }
 

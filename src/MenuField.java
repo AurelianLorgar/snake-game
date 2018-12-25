@@ -51,7 +51,12 @@ class MenuField extends JPanel {
     }
 
     private void saveButton() {
-        game.field.saveSerialization();
+        try {
+            game.field.saveSerialization();
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Игра не запущена",
+                    "Error",  JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void loadButton() {
