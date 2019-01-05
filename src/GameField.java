@@ -190,13 +190,18 @@ public class GameField extends JPanel implements ActionListener, Serializable {
     }
 
     void saveSerialization() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("save\\save.dat"))) {
-            gameField(mouseX, mouseY, sneks, snekX, snekY, speed, type, count, up, down, right, left, isPause);
-            oos.writeObject(this);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
-                    JOptionPane.ERROR_MESSAGE);
+        if (inGame) {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("save\\save.dat"))) {
+                gameField(mouseX, mouseY, sneks, snekX, snekY, speed, type, count, up, down, right, left, isPause);
+                oos.writeObject(this);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
+        else
+            JOptionPane.showMessageDialog(null, "Игра не запущена", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
     }
 
     void loadSerialization() {
@@ -370,8 +375,8 @@ public class GameField extends JPanel implements ActionListener, Serializable {
 
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
-            checkMouse();
             move();
+            checkMouse();
             checkCollisions();
         }
 
