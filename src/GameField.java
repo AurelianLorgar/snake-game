@@ -194,6 +194,7 @@ public class GameField extends JPanel implements ActionListener, Serializable {
             try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("save\\save.dat"))) {
                 gameField(mouseX, mouseY, sneks, snekX, snekY, speed, type, count, up, down, right, left, isPause);
                 oos.writeObject(this);
+                JOptionPane.showMessageDialog(null, "Игра сохранена");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
                         JOptionPane.ERROR_MESSAGE);

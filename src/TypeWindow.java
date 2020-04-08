@@ -4,7 +4,7 @@ class TypeWindow extends JFrame {
 
 
     TypeWindow() {
-        setTitle("Сложность");
+        setTitle("Режим");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(240, 130);
         setLocation(550, 284);
